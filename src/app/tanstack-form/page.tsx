@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { createUserAction } from "@/lib/server/actions/user-action";
 import { userSchema } from "@/lib/share/schema";
 import {
+  FieldMeta,
   mergeForm,
   useForm,
   useStore,
@@ -19,18 +20,22 @@ const Page = () => {
       console.log("data", data);
       console.log("errors", validationErrors?.username?._errors);
       //!在这里可以更精细的处理错误映射,能细化到字段,但是没有辅助api实现起来比较麻烦
-      // if (validationErrors) {
-      //   form.setFieldMeta(
-      //     "username",
-      //     (meta) =>
-      //       ({
-      //         ...meta,
-      //         error: validationErrors?.username?._errors?.join(),
-      //         errorMap: { onSubmit: validationErrors?._errors?.join() },
-      //       } as FieldMeta)
-      //   );
-      //   form.setErrorMap({ onSubmit: validationErrors?._errors?.join() });
-      // }
+      if (validationErrors) {
+        //仅处理username的错误作为演示
+        form.setFieldMeta(
+          "username",
+          (meta) =>
+            ({
+              ...meta,
+              error: validationErrors?.username?._errors?.join(),
+              errorMap: {
+                onSubmit: validationErrors?.username?._errors?.join(),
+              },
+            } as FieldMeta)
+        );
+        //此处设置root error
+        form.setErrorMap({ onSubmit: validationErrors?._errors?.join() });
+      }
     },
   });
   const form = useForm({
