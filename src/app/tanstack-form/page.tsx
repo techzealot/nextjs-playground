@@ -2,8 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createUserAction } from "@/lib/actions/user-action";
-import { userSchema } from "@/lib/schema";
+import { createUserAction } from "@/lib/server/actions/user-action";
+import { userSchema } from "@/lib/share/schema";
 import {
   mergeForm,
   useForm,
@@ -18,7 +18,7 @@ const Page = () => {
     onSettled: ({ result: { data, validationErrors } }) => {
       console.log("data", data);
       console.log("errors", validationErrors?.username?._errors);
-      //!在这里可以更精细的处理错误映射,能细化到字段
+      //!在这里可以更精细的处理错误映射,能细化到字段,但是没有辅助api实现起来比较麻烦
       // if (validationErrors) {
       //   form.setFieldMeta(
       //     "username",

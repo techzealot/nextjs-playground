@@ -1,10 +1,11 @@
 "use server"
 
-import { actionClient } from "@/lib/actions/safe-action";
-import { UserSchema, userSchema } from "@/lib/schema";
+import { actionClient } from "@/lib/server/actions/safe-action";
+import { serverUserSchema } from "@/lib/server/schema";
+import { UserSchema } from "@/lib/share/schema";
 import { type FormState } from "@tanstack/react-form";
 
-const serverUserSchema = userSchema.refine((val) => { return val.username !== "administrator" }, "administrator已存在")
+
 
 export const createUserAction = actionClient
     .schema(serverUserSchema)
