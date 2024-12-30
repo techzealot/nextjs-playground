@@ -8,6 +8,7 @@ import { type FormState } from "@tanstack/react-form";
 
 
 export const createUserAction = actionClient
+    .metadata({ id: "CreateUser" })
     .schema(serverUserSchema)
     .action(async ({ parsedInput: { username, email, password, confirmPassword } }) => {
         console.log("Creating user with username:", username);

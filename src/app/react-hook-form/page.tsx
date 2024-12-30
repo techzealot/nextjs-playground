@@ -7,6 +7,7 @@ import { userSchema } from "@/lib/share/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
 import { useForm } from "react-hook-form";
+import { errorMap } from "zod-validation-error";
 
 const Page = () => {
   const { execute } = useAction(createUserAction, {
@@ -55,7 +56,7 @@ const Page = () => {
     formState: { errors, isSubmitting },
     setError,
   } = useForm({
-    resolver: zodResolver(userSchema),
+    resolver: zodResolver(userSchema, { errorMap }),
     defaultValues: {
       username: "",
       email: "",
