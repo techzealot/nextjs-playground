@@ -137,6 +137,7 @@ const Page = () => {
                         <Input
                           placeholder="Occupation"
                           {...field}
+                          //!由于初始isAdult为false,需要有默认值,否则初始值为undefine,react会报错uncontrolled input
                           value={field.value || ""}
                         />
                       </FormControl>
@@ -156,6 +157,7 @@ const Page = () => {
                           placeholder="Years of Experience"
                           type="number"
                           {...field}
+                          //!由于初始isAdult为false,需要有默认值,否则初始值为undefine,react会报错uncontrolled input
                           value={field.value || 0}
                           onChange={(e) =>
                             field.onChange(Number(e.target.value))
