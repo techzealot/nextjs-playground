@@ -37,6 +37,14 @@ function Page() {
   const stepper = useStepper();
 
   const form = useForm({
+    defaultValues: {
+      address: "test",
+      city: "",
+      postalCode: "",
+      cardNumber: "",
+      expirationDate: "",
+      cvv: "",
+    },
     mode: "onTouched",
     resolver: zodResolver(stepper.current.schema),
   });
