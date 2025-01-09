@@ -31,7 +31,7 @@ const FormSchema = createStepSchema({
   }),
 });
 type FormValues = z.infer<typeof FormSchema>;
-export function MultiStepFormDemo() {
+function MultiStepFormDemo() {
   const form = useForm<FormValues>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
